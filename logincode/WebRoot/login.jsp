@@ -37,12 +37,12 @@ function checkInput(){
         return false;
     }
     //判断验证码
-    if($("input[name=validateCode]").val()==null || $("input[name=validateCode]").val()==""){
+    if($("input[name=valCode]").val()==null || $("input[name=validateCode]").val()==""){
         alert("验证码不能为空");
-        $("input[name=validateCode]").focus();
+        $("input[name=valCode]").focus();
         return false;
     }
-    return false;
+    return true;
 }
 
 </script>
@@ -65,7 +65,7 @@ function checkInput(){
             </div>
             <div>
                 <label>验证码:</label>
-                <input type="text" name="validationCode"/>
+                <input type="text" name="valCode"/>
                 <img id="codeimg"  src="getcode">
             </div>
             <div>
