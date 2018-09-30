@@ -63,7 +63,7 @@ public class ImgCode extends HttpServlet {
         response.setDateHeader("Expires", 0);
 
         // 设置图形验证码的长和宽
-        int width = 120, height = 50;
+        int width = 120, height = 30;
         BufferedImage image = new BufferedImage(width, height,
                 BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
@@ -94,7 +94,7 @@ public class ImgCode extends HttpServlet {
             g.setColor(getRandomColor(10, 100));
             // 在图形上输出验证码字符，x和y都是随机生成的
             g.drawString(codeChar+"", 28 * i + random.nextInt(4),
-                    height - random.nextInt(6));
+                    height - random.nextInt(5));
         }
 
         // 获得HttpSession对象
@@ -103,11 +103,11 @@ public class ImgCode extends HttpServlet {
 
         // 设置session对象5分钟失效
 
-        session.setMaxInactiveInterval(5 * 60);
+        //session.setMaxInactiveInterval(15 * 60);
 
         // 将验证码保存在session对象中,key为validation_code
 
-        session.setAttribute("validation_code", validationCode.toString());
+        session.setAttribute("val_code", validationCode.toString());
          //关闭Graphics对象
 
         g.dispose();
@@ -116,6 +116,10 @@ public class ImgCode extends HttpServlet {
 
         ImageIO.write(image, "JPEG", outS);
 	}
+	
+	
+	
+	
 	
 	// rgb(255,255,255)
 	  private Color getRandomColor(int minColor, int maxColor) {
